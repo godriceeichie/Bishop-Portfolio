@@ -2,6 +2,7 @@ import { Footer, Navbar } from './components'
 import './globals.css'
 import type { Metadata } from 'next'
 import {lato} from './fonts'
+import Footer2 from './components/Footer2'
 
 export const metadata: Metadata = {
   title: 'Bishop Yomi Isijola | Official Website',
@@ -19,7 +20,8 @@ export default function RootLayout({
       <body className={lato.className}>
         <Navbar />
         {children}
-        <Footer />
+        {/* <Footer /> */}
+        <Footer2 />
       </body>
     </html>
   )
