@@ -7,6 +7,14 @@ import { GrMail } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
 
 const Footer2 = () => {
+  function getCurrentYear() {
+    const date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      timeZoneName: "short",
+    };
+    return date.toLocaleDateString(undefined, options);
+  }
   return (
     <footer className="bg-gradient-to-tr from-[#001D78] via-[#003194] to-[#2B77EA] md:grid md:grid-cols-5">
       <div className="hidden md:block relative h-32 md:col-span-2 md:h-full">
@@ -224,7 +232,7 @@ const Footer2 = () => {
             </ul>
 
             <p className="mt-8 text-[14px] text-gray-400 sm:mt-0">
-              &copy; 2022. Company Name. All rights reserved.
+              &copy; Copyright {getCurrentYear().slice(0, 4)} Bishop Yomi Isijola. All rights reserved.
             </p>
           </div>
         </div>

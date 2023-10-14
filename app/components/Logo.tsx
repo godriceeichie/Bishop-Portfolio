@@ -5,7 +5,7 @@ import { monarda } from '../fonts'
 
 const Logo = () => {
   return (
-    <h1 className={`${monarda.className} text-[#bdd5f8] text-2xl`}>
+    <h1 className={`${monarda.className} text-[#bdd5f8] text-xl md:text-2xl`}>
       <Link href={'/'}>Yomi Isijola</Link>
     </h1>
   )

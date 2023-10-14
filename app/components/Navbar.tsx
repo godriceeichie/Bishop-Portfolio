@@ -82,20 +82,26 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
+              {/* <a
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
                 href="/"
               >
                 Login
-              </a>
+              </a> */}
 
               <div className="hidden sm:flex">
                 <a
-                  className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+                  className="rounded-md bg-accent-color px-4 py-1.5 font-medium text-white"
                   href="/"
                 >
-                  Register
+                  Donate
                 </a>
+                {/* <a
+                  className="rounded-md bg-gray-100 px-4 py-1.5 font-medium text-accent-color"
+                  href="/"
+                >
+                  Donate
+                </a> */}
               </div>
             </div>
 

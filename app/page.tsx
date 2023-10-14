@@ -1,11 +1,12 @@
 import Image from 'next/image'
-import { CTA, Hero } from './components'
+import { HomeAbout, HomeCTA, HomeHero} from './components'
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <CTA />
+      <HomeHero />
+      <HomeAbout />
+      <HomeCTA />
     </>
   )
 }

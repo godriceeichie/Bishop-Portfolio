@@ -13,7 +13,7 @@ const CTA = () => {
 
           <p className="hidden text-gray-500 sm:mt-4 sm:block">
             
-            Receive weekly newsletters, event invitations, and insightful articles delivered right to your inbox
+            Receive weekly devotionals, event invitations, and insightful articles delivered right to your inbox
           </p>
         </div>
 
