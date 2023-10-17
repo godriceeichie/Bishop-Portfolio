@@ -1,3 +1,4 @@
+import { nextui } from '@nextui-org/react'
 import type { Config } from 'tailwindcss'
 import {fontFamily } from 'tailwindcss/defaultTheme'
 
@@ -6,6 +7,7 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -15,7 +17,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'accent-color': "#F20459"
+        'accent-color': "#F20459",
+        'primary-color': "#2B77EA"
       },
       fontFamily:{
         sans: ['var(--font-inter)'],
@@ -25,7 +28,7 @@ const config: Config = {
     },
   },
   plugins: [
-    require('preline/plugin')
+    nextui()
   ],
 }
 export default config

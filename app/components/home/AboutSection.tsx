@@ -44,7 +44,7 @@ const AboutSection = () => {
               <Link href={'about'} className="btn2 mt-8 inline-block rounded px-8 py-3 relative bg-accent-color text-white font-medium tracking-wider leading-none overflow-hidden hover:border hover:border-accent-color hover:text-accent-color">
                 <span className="absolute inset-0 bg-white"></span>
                 <span className="absolute inset-0 flex justify-center items-center font-bold"> 
-                    About Me
+                  About Me
                 </span>
                 About Me
               </Link>

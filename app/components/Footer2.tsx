@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import bishopImg from "../../public/img/BISHOP.jpg";
@@ -5,8 +6,13 @@ import Image from "next/image";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
+import { usePathname } from "next/navigation";
 
 const Footer2 = () => {
+  //Get the current pathname
+  const pathname = usePathname();
+
+  //Get the current year for the copyright in the footer
   function getCurrentYear() {
     const date = new Date();
     const options: Intl.DateTimeFormatOptions = {
@@ -15,6 +21,7 @@ const Footer2 = () => {
     };
     return date.toLocaleDateString(undefined, options);
   }
+
   return (
     <footer className="bg-gradient-to-tr from-[#001D78] via-[#003194] to-[#2B77EA] md:grid md:grid-cols-5">
       <div className="hidden md:block relative h-32 md:col-span-2 md:h-full">
@@ -52,38 +59,60 @@ const Footer2 = () => {
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <a
-                    href="#"
-                    className="text-white transition hover:opacity-75"
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[40px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${
+                      pathname === "/" ? "after:scale-x-100" : ""
+                    }`}
+                    href="/"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
-                  <a
-                    href="#"
-                    className="text-white transition hover:opacity-75"
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[30px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${
+                      pathname === "/blog" ? "after:scale-x-100" : ""
+                    }`}
+                    href="/blog"
                   >
                     Blog
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
-                  <a
-                    href="#"
-                    className="text-white transition hover:opacity-75"
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[38px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${
+                      pathname === "/about" ? "after:scale-x-100" : ""
+                    }`}
+                    href="/about"
                   >
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="text-white transition hover:opacity-75"
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[50px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/contact" ? "after:scale-x-100" : ""}`}
+                    href="/contact"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -232,7 +261,8 @@ const Footer2 = () => {
             </ul>
 
             <p className="mt-8 text-[14px] text-gray-400 sm:mt-0">
-              &copy; Copyright {getCurrentYear().slice(0, 4)} Bishop Yomi Isijola. All rights reserved.
+              &copy; Copyright {getCurrentYear().slice(0, 4)} Bishop Yomi
+              Isijola. All rights reserved.
             </p>
           </div>
         </div>
