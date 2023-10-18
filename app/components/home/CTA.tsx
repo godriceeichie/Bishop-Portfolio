@@ -3,7 +3,7 @@ import React from "react";
 const CTA = () => {
   return (
     <section className="bg-[#9ECBFF]">
-    {/* // <section className=""> */}
+      {/* // <section className=""> */}
       <div className="p-8 md:p-12 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
@@ -11,9 +11,9 @@ const CTA = () => {
             {/* Whereas recognition */}
           </h2>
 
-          <p className="hidden text-gray-500 sm:mt-4 sm:block">
-            
-            Receive weekly devotionals, event invitations, and insightful articles delivered right to your inbox
+          <p className=" text-gray-500 sm:mt-4 sm:block">
+            Receive weekly devotionals, event invitations, and insightful
+            articles delivered right to your inbox
           </p>
         </div>
 
@@ -35,10 +35,11 @@ const CTA = () => {
               type="submit"
               className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-accent-color px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
             >
-              <span className="text-sm font-medium"> Subscribe </span>
+              {/* <span className="font-semibold"> Subscribe </span> */}
+              Subscribe
 
               <svg
-                className="h-5 w-5 rtl:rotate-180"
+                className="h-5 w-5 rtl:rotate-180 group-hover:translate-x-1.5 transition-transform"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

@@ -9,10 +9,8 @@ import NavbarMenu from "./NavbarMenu";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [clicked, setClicked] = useState(false);
-  useEffect(() => {
-    console.log(clicked)
-  }, [clicked])
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <header className="bg-[#0047B0]">
@@ -97,9 +95,9 @@ const Navbar = () => {
               <button
                 id="menu-btn"
                 className={`block hamburger md:hidden focus:outline-none ${
-                  clicked ? "open" : ""
+                  isOpen ? "open" : ""
                 }`}
-                onClick={() => setClicked(!clicked)}
+                onClick={() => setIsOpen(!isOpen)}
               >
                 <span className="hamburger-top"></span>
                 <span className="hamburger-middle"></span>
@@ -141,7 +139,7 @@ const Navbar = () => {
           </div>
         </div>
       </header>
-      <NavbarMenu clicked={clicked} />
+      <NavbarMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
