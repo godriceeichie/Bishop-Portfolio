@@ -1,9 +1,10 @@
-'use client'
+"use client";
 import Image from "next/image";
 import React from "react";
-import bishopImg from '../../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg'
+import bishopImg from "../../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import CTABtn from "../CTABtn";
 
 const AboutSection = () => {
   return (
@@ -23,17 +24,19 @@ const AboutSection = () => {
           <div className="relative flex items-center bg-gray-100">
             <span className="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"></span>
 
-            <div className="p-8 sm:p-16 lg:p-24">
-              <h2 className="text-2xl font-bold sm:text-3xl">
-                Bishop Yomi Isijola
-              </h2>
+            <div className="p-8 sm:p-16 lg:p-24 flex flex-col gap-8">
+              <div>
+                <h2 className="text-2xl font-bold sm:text-3xl text-[#001D78]">
+                  Bishop Yomi Isijola
+                </h2>
 
-              <p className="mt-4 text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aliquid, molestiae! Quidem est esse numquam odio deleniti,
-                beatae, magni dolores provident quaerat totam eos, aperiam
-                architecto eius quis quibusdam fugiat dicta.
-              </p>
+                <p className="mt-4 text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Aliquid, molestiae! Quidem est esse numquam odio deleniti,
+                  beatae, magni dolores provident quaerat totam eos, aperiam
+                  architecto eius quis quibusdam fugiat dicta.
+                </p>
+              </div>
 
               {/* <Link
                 href="about"
@@ -41,13 +44,16 @@ const AboutSection = () => {
               >
                 Read More
               </Link> */}
-              <Link href={'about'} className="btn2 mt-8 inline-block rounded px-8 py-3 relative bg-accent-color text-white font-medium tracking-wider leading-none overflow-hidden hover:border hover:border-accent-color hover:text-accent-color">
+              {/* <Link href={'about'} className="btn2 mt-8 inline-block rounded px-8 py-3 relative bg-accent-color text-white font-medium tracking-wider leading-none overflow-hidden hover:border hover:border-accent-color hover:text-accent-color">
                 <span className="absolute inset-0 bg-white"></span>
                 <span className="absolute inset-0 flex justify-center items-center font-bold"> 
                   About Me
                 </span>
                 About Me
-              </Link>
+              </Link> */}
+              <div>
+                <CTABtn buttonName="About Me" />
+              </div>
             </div>
           </div>
         </div>

@@ -35,8 +35,7 @@ const CTA = () => {
               type="submit"
               className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-accent-color px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
             >
-              {/* <span className="font-semibold"> Subscribe </span> */}
-              Subscribe
+              <span className="font-semibold"> Subscribe </span>
 
               <svg
                 className="h-5 w-5 rtl:rotate-180 group-hover:translate-x-1.5 transition-transform"
