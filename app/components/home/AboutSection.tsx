@@ -52,7 +52,7 @@ const AboutSection = () => {
                 About Me
               </Link> */}
               <div>
-                <CTABtn buttonName="About Me" />
+                <CTABtn buttonName="About Me" link={'about'} />
               </div>
             </div>
           </div>

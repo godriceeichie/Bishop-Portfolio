@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import {lato} from './fonts'
 import Footer2 from './components/Footer2'
 import { Providers } from './providers'
-import Navbar2 from './components/Navbar2'
 
 export const metadata: Metadata = {
   title: 'Bishop Yomi Isijola | Official Website',

@@ -7,14 +7,15 @@ import Link from "next/link";
 import { Link as UILink } from "@nextui-org/react";
 import NavbarMenu from "./NavbarMenu";
 import CTABtn from "./CTABtn";
+import UseScroll from "@/hooks/useScroll";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
+  const {scrollPosition} = UseScroll()
   return (
     <>
-      <header className="bg-[#0047B0]">
+      <header className={`bg-[#0047B0] sticky top-0 z-20`}>
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
@@ -44,10 +45,10 @@ const Navbar = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${pathname === "/blog" ? "after:scale-x-100" : ""}`}
-                      href="/blog"
+                    ${pathname === "/devotionals" ? "after:scale-x-100" : ""}`}
+                      href="/devotionals"
                     >
-                      Blog
+                      Devotionals
                     </Link>
                   </li>
 
@@ -57,7 +58,7 @@ const Navbar = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${pathname === "/about" ? "after:hover:scale-x-100" : ""}`}
+                    ${pathname === "/about" ? "after:scale-x-100" : ""}`}
                       href="/about"
                     >
                       About
@@ -71,7 +72,7 @@ const Navbar = () => {
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
                     ${
-                      pathname === "/contact" ? "after:hover:scale-x-100" : ""
+                      pathname === "/contact" ? "after:scale-x-100" : ""
                     }`}
                       href="/contact"
                     >
@@ -91,7 +92,7 @@ const Navbar = () => {
                   >
                     Donate
                   </a> */}
-                  <CTABtn buttonName={'Donate'}/>
+                  <CTABtn buttonName={'Give'} link=""/>
                 </div>
               </div>
               <button

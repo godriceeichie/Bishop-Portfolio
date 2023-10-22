@@ -6,10 +6,10 @@ const TestimonialSlideBtn = () => {
     const swiper = useSwiper()
   return <div className="w-full flex justify-between items-center p-1 absolute top-1/2 z-10 ]">
     <button onClick={() => swiper.slidePrev()}>
-        <AiOutlineLeft size={45} className="text-primary-color"/>
+      <AiOutlineLeft size={45} className="text-primary-color"/>
     </button>
     <button onClick={() => swiper.slideNext()}>
-        <AiOutlineRight size={45} className="text-primary-color"/>
+      <AiOutlineRight size={45} className="text-primary-color"/>
     </button>
   </div>;
 };

@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-const CTABtn = ({ buttonName }: {buttonName: string}) => {
+const CTABtn = ({ buttonName, link }: {buttonName: string, link: string}) => {
   return (
     <>
       <Link
-        href={"about"}
+        href={link}
         className="btn2 inline-block rounded px-6 py-3 relative bg-accent-color text-white tracking-wider leading-none overflow-hidden hover:border hover:border-accent-color hover:text-accent-color"
       >
         <span className="absolute inset-0 bg-white"></span>

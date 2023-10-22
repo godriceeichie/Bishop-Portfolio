@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 const TestimonySlide = () => {
   return (
-    <div className="bg-white shadow py-8 px-7 rounded">
+    <div className="bg-white py-8 px-7 rounded-md shadow-2xl">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
@@ -31,7 +31,7 @@ const TestimonySlide = () => {
           ></path>
         </g>
       </svg>
-      <p>
+      <p className="mt-3">
         I encountered God’s servant in a vision which encouraged me to attend
         the Impact meetings diligently as I was preparing for the church's Aluu
         Mbodo city crusade. I hearkened and was greatly impacted and better
