@@ -1,4 +1,4 @@
-import { Footer, Navbar } from './components'
+import { CTA, Footer, Navbar } from './components'
 import './globals.css'
 import type { Metadata } from 'next'
 import {lato} from './fonts'
@@ -21,8 +21,9 @@ export default function RootLayout({
       <body className={lato.className}>
         <Providers>
           <Navbar />
-          {/* <Navbar2 /> */}
+          
           {children}
+          <CTA />
           <Footer2 />
         </Providers>
       </body>

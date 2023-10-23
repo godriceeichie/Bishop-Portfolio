@@ -18,7 +18,8 @@ const config: Config = {
       },
       colors: {
         'accent-color': "#F20459",
-        'primary-color': "#2B77EA"
+        'primary-color': "#2B77EA",
+        'text-color': 'text-gray-500'
       },
       fontFamily:{
         sans: ['var(--font-inter)'],

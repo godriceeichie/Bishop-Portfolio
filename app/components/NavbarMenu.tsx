@@ -15,7 +15,7 @@ const NavbarMenu = ({
   useEffect(() => (isOpen ? setIsOpen(false) : void null), [pathname]);
   return (
     <div
-      className={`bg-[#0047B0] md:hidden opacity-0 fixed z-30 w-full left-0 ${
+      className={`bg-[#0047B0] md:hidden opacity-0 fixed z-19 w-full left-0 ${
         isOpen ? "top-[50px]" : "top-[-520px]"
       } ${
         isOpen ? "opacity-100 h-scree bottom-0" : ""

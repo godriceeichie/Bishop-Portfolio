@@ -55,3 +55,27 @@
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(6px) translate(-6px);
 }
+
+.custom-shape-divider-bottom-1698059857 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  /* padding-bottom: 100rem; */
+}
+
+.custom-shape-divider-bottom-1698059857 svg {
+  position: relative;
+  display: block;
+  width: calc(225% + 1.3px);
+  height: 150px;
+}
+
+.custom-shape-divider-bottom-1698059857 .shape-fill {
+  fill: #9ECBFF;
+  /* fill: #000; */
+  padding-bottom: 100rem;
+}

@@ -30,7 +30,7 @@ const AboutSection = () => {
                   Bishop Yomi Isijola
                 </h2>
 
-                <p className="mt-4 text-gray-600">
+                <p className="mt-4 text-gray-500">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Aliquid, molestiae! Quidem est esse numquam odio deleniti,
                   beatae, magni dolores provident quaerat totam eos, aperiam
