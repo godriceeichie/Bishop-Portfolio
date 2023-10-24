@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import bishopImg from "../../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg";
+// import bishopImg from "../../../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg";
+import bishopImg from '../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg'
 import { motion } from "framer-motion";
 import Link from "next/link";
 import CTABtn from "../CTABtn";

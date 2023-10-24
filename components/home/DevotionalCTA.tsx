@@ -1,11 +1,10 @@
 import React from "react";
-import bgImg from '../../../public/img/devotional-cta-bg.jpg'
-import bishop from '../../../public/img/BISHOP.jpg'
+import bgImg from '../../public/img/devotional-cta-bg.jpg'
+import bishop from '../../public/img/BISHOP.jpg'
 
 const DevotionalCTA = () => {
   return (
     <>
-
       <section style={{backgroundImage: `url(${bgImg.src})`}} className={`overflow-hidden bg-cover bg-top bg-no-repeat`}>
         <div className="bg-black/25 px-8 py-14 md:p-12 lg:px-16 lg:py-24">
           <div className="text-center sm:text-left m:text-right">

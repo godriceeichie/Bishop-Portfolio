@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import bishopImg from "../../public/img/BISHOP.jpg";
+import bishopImg from "../public/img/BISHOP.jpg";
+// import bishopImg from "../../public/img/BISHOP.jpg";
 import Image from "next/image";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";

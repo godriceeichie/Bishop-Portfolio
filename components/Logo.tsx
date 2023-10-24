@@ -1,7 +1,8 @@
 import { Pacifico } from 'next/font/google'
 import React from 'react'
 import Link from 'next/link'
-import { monarda } from '../fonts'
+import { monarda } from '../app/fonts'
+
 
 const Logo = () => {
   return (

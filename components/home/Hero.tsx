@@ -1,5 +1,5 @@
 import React from 'react'
-import bishopImg from '../../../public/img/366491163_249188908015738_5779847465148604054_n.jpg'
+import bishopImg from '../../public/img/366491163_249188908015738_5779847465148604054_n.jpg'
 import Image from 'next/image'
 import { AiOutlineYoutube } from 'react-icons/ai'
 import Link from 'next/link'

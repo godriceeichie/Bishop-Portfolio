@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import bg from "../../../public/img/21-removebg.png";
+// import bg from "../../../public/img/21-removebg.png";
+import bg from '../../public/img/21-removebg.png'
 import Image from "next/image";
 import TestimonySlide from "./Testimony";
 // import Swiper core and required modules

@@ -1,8 +1,8 @@
-import { CTA, Footer, Navbar } from './components'
+import { CTA, Footer, Navbar } from '../components'
 import './globals.css'
 import type { Metadata } from 'next'
 import {lato} from './fonts'
-import Footer2 from './components/Footer2'
+import Footer2 from '../components/Footer2'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
