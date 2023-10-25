@@ -1,14 +1,13 @@
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import { TestimoniesType } from "@/types";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const TestimonySlide = () => {
+const TestimonySlide = ({name, content}:{name: string, content: string}) => {
   return (
     <div className="bg-white py-8 px-7 rounded-md shadow-2xl">
       <svg
@@ -32,12 +31,13 @@ const TestimonySlide = () => {
         </g>
       </svg>
       <p className="mt-3">
-        I encountered God’s servant in a vision which encouraged me to attend
+        {/* I encountered God’s servant in a vision which encouraged me to attend
         the Impact meetings diligently as I was preparing for the church's Aluu
         Mbodo city crusade. I hearkened and was greatly impacted and better
         equipped for the crusade. As for the crusade, the crowd was
         overwhelming, lots of souls were won, unusual healings and deliverances
-        took place - all to the glory of God!
+        took place - all to the glory of God! */}
+        {content}
       </p>
     </div>
   );

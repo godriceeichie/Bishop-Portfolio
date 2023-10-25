@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import contactImg from "../../public/img/Contact us-amico.png";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { GrMail } from "react-icons/gr";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/validation/contactForm";
+import { Button } from "@chakra-ui/react";
 
 type Inputs = {
   name: string;
@@ -29,9 +30,10 @@ const ContactForm = () => {
     },
     resolver: zodResolver(contactFormSchema),
   });
-  const submitData: SubmitHandler<Inputs> = (data) => {
-    console.log(data)
-  }
+  const submitData: SubmitHandler<Inputs> = (data, e) => {
+    e?.preventDefault()
+    console.log(data);
+  };
   return (
     <div>
       <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-4 bg-white p-8 relative z-10 rounded-lg">
@@ -42,27 +44,34 @@ const ContactForm = () => {
               Contact via email, phone or through our web form
             </p>
           </header>
-          <form action="" className="flex flex-col gap-4" onSubmit={handleSubmit(submitData)}>
+          <form
+            action=""
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(submitData)}
+          >
             <input
               type="text"
               className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
               placeholder="Enter your name"
               id="name"
-              {...register('name')}
+              disabled={isSubmitting}
+              {...register("name")}
             />
             <input
               type="email"
               className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
               placeholder="Enter your email"
               id="email"
-              {...register('email')}
+              disabled={isSubmitting}
+              {...register("email")}
             />
             <input
               type="number"
               className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
               placeholder="Enter your phone number"
               id="phoneNumber"
-              {...register('phoneNumber')}
+              disabled={isSubmitting}
+              {...register("phoneNumber")}
             />
             <textarea
               className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
@@ -70,11 +79,23 @@ const ContactForm = () => {
               rows={4}
               placeholder="Write your message"
               id="message"
-              {...register('message')}
+              disabled={isSubmitting}
+              {...register("message")}
             ></textarea>
-            <button className="bg-accent-color text-white py-2 rounded-lg bg-primary-color">
-              Submit
-            </button>
+            {isSubmitting ? (
+              <Button
+                isLoading
+                loadingText="Submitting"
+                variant="outline"
+                className="border-[#001D78]"
+              >
+                Submit
+              </Button>
+            ) : (
+              <button className="bg-accent-color text-white py-2 rounded-lg bg-primary-color">
+                Submit
+              </button>
+            )}
           </form>
         </div>
         <div className="flex flex-col items-center gap-7">

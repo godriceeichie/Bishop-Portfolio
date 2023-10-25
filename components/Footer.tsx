@@ -22,7 +22,6 @@ const Footer = () => {
               Home
             </Link>
           </li>
-
           <li>
             <Link
               className="text-white transition hover:text-gray-700/75"

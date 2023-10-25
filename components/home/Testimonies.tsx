@@ -1,21 +1,30 @@
 "use client";
-import React from "react";
-// import bg from "../../../public/img/21-removebg.png";
+import React, { useEffect, useState } from "react";
 import bg from '../../public/img/21-removebg.png'
 import Image from "next/image";
 import TestimonySlide from "./Testimony";
-// import Swiper core and required modules
-import { Navigation, Pagination, A11y } from "swiper/modules";
 
+// import Swiper core and required modules
+import { Pagination, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import TestimonialSlideBtn from "./TestimonialSlideBtn";
+import TestimonialSlideBtn from "./TestimonySlideBtn";
+import { getTestimonies } from "@/sanity/sanity.query";
+import { TestimoniesType } from "@/types";
 
 const Testimonies = () => {
+  const [data, setData] = useState<TestimoniesType[]>()
+  useEffect(() =>{
+    const fetchData = async () => {
+      const testimonies: TestimoniesType[] = await getTestimonies()
+      setData(testimonies)
+    }
+    fetchData()
+  }, [])
   return (
     <section className="relative mt-10 lg:mt-24">
       <h2 className="text-center text-3xl mb-3 text-[#001D78] font-semibold">Testimonies of God's Goodness</h2>
@@ -36,7 +45,8 @@ const Testimonies = () => {
           className="relative"
         >
           <TestimonialSlideBtn />
-          <SwiperSlide>
+          {/* <SwiperSlide>
+
             <TestimonySlide />
           </SwiperSlide>
           <SwiperSlide>
@@ -47,7 +57,14 @@ const Testimonies = () => {
           </SwiperSlide>
           <SwiperSlide>
             <TestimonySlide />
-          </SwiperSlide>
+          </SwiperSlide> */}
+          {data && data.map(data => {
+            return(
+              <SwiperSlide key={data._id}>
+                <TestimonySlide name={data.name} content={data.content}/>
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
       <Image
