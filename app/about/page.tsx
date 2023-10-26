@@ -1,9 +1,12 @@
+import { AboutHero } from '@/components'
 import React from 'react'
 
-const page = () => {
+const About = () => {
   return (
-    <div>page</div>
+    <>
+      <AboutHero />
+    </>
   )
 }
 
-export default page
+export default About

@@ -39,6 +39,8 @@ const TestimonySlide = ({name, content}:{name: string, content: string}) => {
         took place - all to the glory of God! */}
         {content}
       </p>
+      <div className="w-full border border-[#D0D4CA] rounded my-4"></div>
+      <h4 className="text-lg font-semibold">{name}</h4>
     </div>
   );
 };

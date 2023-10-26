@@ -1,3 +1,4 @@
+export { default as AboutHero} from './about/Hero'
 export { default as ContactHero }from './contact/Hero'
 export { default as HomeDevotionalCTA} from './home/DevotionalCTA'
 export { default as HomeHero } from './home/Hero'

@@ -25,6 +25,7 @@ const config: Config = {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-pacifico)'],
         lobster: ['var(--font-lobster)', ...fontFamily.sans]
+        
       }
     },
   },
