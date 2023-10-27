@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/validation/contactForm";
 import { Button } from "@chakra-ui/react";
+import client from "@/sanity/sanity.client";
 
 type Inputs = {
   name: string;
@@ -30,9 +31,34 @@ const ContactForm = () => {
     },
     resolver: zodResolver(contactFormSchema),
   });
-  const submitData: SubmitHandler<Inputs> = (data, e) => {
-    e?.preventDefault()
+  const submitData: SubmitHandler<Inputs> = async (data, e) => {
+    e?.preventDefault();
     console.log(data);
+    let token =
+      "sk3Lv9k9IpxALPfNZsiQyknYGmbjO5FLfnQIphoQ3rIseJPWf7nFb7ifbYPSeYB5nbCQmfTbEYILyNUVTUYYf06orBIqbFPmMZe3Rf3ge0dosqcprgTGW3oNeJ7ZcLrME5qJv3mLP6eNoKlKN8getlW0jcZBbqk2PNonh5eGM9vyM26Jo1Jo";
+    let projectId = "14gp8bl9";
+    const mutations = [{
+      "patch": {
+        "query": "*[_type == 'contactForm']",
+        "set":{
+          "name": data.name,
+          "email": data.email,
+          "phoneNumber": data.phoneNumber,
+          "message": data.message
+        }
+      }
+    }]
+    await fetch(`https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ mutations }),
+    })
+    .then((response) => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
   };
   return (
     <div>
@@ -80,7 +106,9 @@ const ContactForm = () => {
                 disabled={isSubmitting}
                 {...register("phoneNumber")}
               />
-              {errors.phoneNumber?.message && <div>{errors.phoneNumber?.message}</div>}
+              {errors.phoneNumber?.message && (
+                <div>{errors.phoneNumber?.message}</div>
+              )}
             </div>
             <div>
               <textarea

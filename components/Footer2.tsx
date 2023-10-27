@@ -214,7 +214,7 @@ const Footer2 = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://www.linkedin.com/in/bishop-yomi-isijola-82870929"
                   rel="noreferrer"
                   target="_blank"
                   className="text-white transition hover:text-gray-700/75"

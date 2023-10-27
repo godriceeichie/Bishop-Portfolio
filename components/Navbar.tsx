@@ -15,7 +15,7 @@ const Navbar = () => {
   const {scrollPosition} = UseScroll()
   return (
     <>
-      <header className={`bg-[#0047B0] sticky top-0 z-30`}>
+      <header className={`bg-[#0047B0] sticky top-0 z-[101]`}>
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
