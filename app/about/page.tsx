@@ -1,10 +1,11 @@
-import { AboutHero } from '@/components'
+import { AboutHero, Bio } from '@/components'
 import React from 'react'
 
 const About = () => {
   return (
     <>
       <AboutHero />
+      <Bio />
     </>
   )
 }

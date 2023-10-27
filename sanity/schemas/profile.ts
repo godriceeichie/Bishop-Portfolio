@@ -18,6 +18,11 @@ export const profile = {
             type: "string"
         },
         {
+            name: "phoneNumber",
+            title: "Phone Number",
+            type: "string"
+        },
+        {
             name: "location",
             title: "Location",
             type: "string"
@@ -60,6 +65,12 @@ export const profile = {
                 }
 
             ]
+        },
+        {
+            name: "fullBio",
+            title: "Full Bio",
+            type: "array",
+            of: [{type: 'block'}]
         }
     ]
 }

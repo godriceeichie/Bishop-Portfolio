@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { AiOutlineYoutube } from 'react-icons/ai'
 import Link from 'next/link'
 
-const Hero = () => {
+
+const Hero = async () => {
+  
   return (
     <div 
       style={{backgroundImage: `url(${bishopImg.src})`}}

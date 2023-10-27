@@ -8,7 +8,7 @@ import { GrMail } from "react-icons/gr";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/validation/contactForm";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import client from "@/sanity/sanity.client";
 
 type Inputs = {
@@ -18,6 +18,7 @@ type Inputs = {
   message: string;
 };
 const ContactForm = () => {
+  const toast = useToast()
   const {
     register,
     handleSubmit,
@@ -37,28 +38,36 @@ const ContactForm = () => {
     let token =
       "sk3Lv9k9IpxALPfNZsiQyknYGmbjO5FLfnQIphoQ3rIseJPWf7nFb7ifbYPSeYB5nbCQmfTbEYILyNUVTUYYf06orBIqbFPmMZe3Rf3ge0dosqcprgTGW3oNeJ7ZcLrME5qJv3mLP6eNoKlKN8getlW0jcZBbqk2PNonh5eGM9vyM26Jo1Jo";
     let projectId = "14gp8bl9";
-    const mutations = [{
-      "patch": {
-        "query": "*[_type == 'contactForm']",
-        "set":{
+    const mutations = [
+      {
+        create: {
+          "_type": "contactForm",
           "name": data.name,
           "email": data.email,
           "phoneNumber": data.phoneNumber,
-          "message": data.message
+          "message": data.message,
         }
-      }
-    }]
-    await fetch(`https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`, {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ mutations }),
-    })
-    .then((response) => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error))
+    ];
+    await fetch(
+      `https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`,
+      {
+        method: "post",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ mutations }),
+      }
+    )
+      .then((response) => response.json())
+      .then(() => toast({
+        title: 'Message sent succesfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      }))
+      .catch((error) => console.error(error));
   };
   return (
     <div>
@@ -78,41 +87,55 @@ const ContactForm = () => {
             <div>
               <input
                 type="text"
-                className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800  ${
+                  errors.name?.message && "border border-red-500"
+                } placeholder:text-sm`}
                 placeholder="Enter your name"
                 id="name"
                 disabled={isSubmitting}
                 {...register("name")}
               />
-              {errors.name?.message && <div>{errors.name?.message}</div>}
+              {errors.name?.message && (
+                <div className="text-red-500">{errors.name?.message}</div>
+              )}
             </div>
             <div>
               <input
                 type="email"
-                className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                  errors.email?.message && "border border-red-500"
+                } placeholder:text-sm`}
                 placeholder="Enter your email"
                 id="email"
                 disabled={isSubmitting}
                 {...register("email")}
               />
-              {errors.name?.message && <div>{errors.email?.message}</div>}
+              {errors.email?.message && (
+                <div className="text-red-500">{errors.email?.message}</div>
+              )}
             </div>
             <div>
               <input
                 type="number"
-                className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                  errors.phoneNumber?.message && "border border-red-500"
+                } placeholder:text-sm`}
                 placeholder="Enter your phone number"
                 id="phoneNumber"
                 disabled={isSubmitting}
                 {...register("phoneNumber")}
               />
               {errors.phoneNumber?.message && (
-                <div>{errors.phoneNumber?.message}</div>
+                <div className="text-red-500">
+                  {errors.phoneNumber?.message}
+                </div>
               )}
             </div>
             <div>
               <textarea
-                className="bg-[#E9EFFF] px-4 py-3 w-full rounded-md placeholder:text-sm"
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                  errors.message?.message && "border border-red-500"
+                } placeholder:text-sm`}
                 cols={30}
                 rows={4}
                 placeholder="Write your message"
@@ -120,7 +143,9 @@ const ContactForm = () => {
                 disabled={isSubmitting}
                 {...register("message")}
               ></textarea>
-              {errors.message?.message && <div>{errors.message?.message}</div>}
+              {errors.message?.message && (
+                <div className="text-red-500">{errors.message?.message}</div>
+              )}
             </div>
             {isSubmitting ? (
               <Button

@@ -11,3 +11,12 @@ export async function getTestimonies(){
 
     )
 }
+
+export async function getBio(){
+    return client.fetch(
+        groq`*[_type == 'profile']{
+            _id,
+            fullBio
+        }`
+    )
+}
