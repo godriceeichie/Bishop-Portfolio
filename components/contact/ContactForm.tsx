@@ -87,7 +87,7 @@ const ContactForm = () => {
             <div>
               <input
                 type="text"
-                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800  ${
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb]  ${
                   errors.name?.message && "border border-red-500"
                 } placeholder:text-sm`}
                 placeholder="Enter your name"
@@ -102,7 +102,7 @@ const ContactForm = () => {
             <div>
               <input
                 type="email"
-                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb] ${
                   errors.email?.message && "border border-red-500"
                 } placeholder:text-sm`}
                 placeholder="Enter your email"
@@ -117,7 +117,7 @@ const ContactForm = () => {
             <div>
               <input
                 type="number"
-                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb] ${
                   errors.phoneNumber?.message && "border border-red-500"
                 } placeholder:text-sm`}
                 placeholder="Enter your phone number"
@@ -133,7 +133,7 @@ const ContactForm = () => {
             </div>
             <div>
               <textarea
-                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-blue-800 ${
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb] ${
                   errors.message?.message && "border border-red-500"
                 } placeholder:text-sm`}
                 cols={30}
@@ -157,7 +157,7 @@ const ContactForm = () => {
                 Submit
               </Button>
             ) : (
-              <button className="bg-accent-color text-white py-2 rounded-lg bg-primary-color">
+              <button className=" text-white py-2 rounded-lg bg-primary-color hover:bg-[#276bd3]">
                 Submit
               </button>
             )}
