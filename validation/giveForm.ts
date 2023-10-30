@@ -16,10 +16,11 @@ export const mappedCurrencies: { [key in Currency]: string} = {
     GBP: "Great Britain Pounds (GBP)"
 }
 export const giveForm = z.object({
-    fullName: z.string(),
-    email: z.string().email({message: "An email is required"}),
-    amount: z.string().transform((amount) => Number(amount)),
+    fullName: z.string().min(2, {message: "Full name must contain at least 2 characters"}),
+    amount: z.string().min(1, {message: "An amount is required"}).transform((amount) => Number(amount)),
     currency: z.enum(currencies, {
         errorMap: () => ({message: "Please select a currency"})
-    })
+    }),
+    email: z.string().email({message: "An email is required"}),
+    additionalInfo: z.string().optional()
 })

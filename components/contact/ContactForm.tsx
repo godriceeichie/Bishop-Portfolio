@@ -10,20 +10,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/validation/contactForm";
 import { Button, useToast } from "@chakra-ui/react";
 import client from "@/sanity/sanity.client";
+import { ContactInputs } from "@/types";
 
-type Inputs = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  message: string;
-};
+
 const ContactForm = () => {
   const toast = useToast()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<Inputs>({
+  } = useForm<ContactInputs>({
     defaultValues: {
       name: "",
       email: "",
@@ -32,7 +28,7 @@ const ContactForm = () => {
     },
     resolver: zodResolver(contactFormSchema),
   });
-  const submitData: SubmitHandler<Inputs> = async (data, e) => {
+  const submitData: SubmitHandler<ContactInputs> = async (data, e) => {
     e?.preventDefault();
     console.log(data);
     let token =

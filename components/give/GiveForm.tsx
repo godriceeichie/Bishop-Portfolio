@@ -8,14 +8,39 @@ import {
   Button,
 } from "@nextui-org/react";
 import CTABtn from "../CTABtn";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { GiveInputs } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { giveForm } from "@/validation/giveForm";
 
 const GiveForm = () => {
   const [currency, setCurrency] = useState<String | React.Key>(
     "Select a currency"
   );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<GiveInputs>({
+    defaultValues: {
+      fullName: "",
+      amount: "",
+      currency: currency,
+      email: "",
+      message: "",
+    },
+    resolver: zodResolver(giveForm),
+  });
+  const submitData: SubmitHandler<GiveInputs> = (data, e) => {
+    e?.preventDefault();
+    console.log(data);
+  };
   return (
     <section className="py-20 px-3">
-      <form className="w-full max-w-lg mx-auto shadow-lg rounded-lg py-4 px-8">
+      <form
+        className="w-full max-w-lg mx-auto shadow-lg rounded-lg py-4 md:py-6 px-4 md:px-8"
+        onSubmit={handleSubmit(submitData)}
+      >
         <h2 className="font-semibold text-lg border-b">Personal Information</h2>
         <div className="mt-5 flex flex-col gap-5">
           <div className="flex flex-col gap-1">
@@ -28,31 +53,45 @@ const GiveForm = () => {
             </label>
             <input
               type="text"
-              name=""
+              disabled={isSubmitting}
               id="full-name"
-              className="bg-[#E9EFFF] rounded-sm py-2 px-3 active:outline outline-[#225fbb] placeholder:text-sm"
+              className={`${
+                errors.fullName?.message && "border border-red-500"
+              } bg-[#E9EFFF] rounded-sm py-2 px-3 active:outline outline-[#225fbb] placeholder:text-sm`}
               placeholder="Enter your full name"
+              {...register("fullName")}
             />
+            {errors.fullName?.message && (
+              <div className="text-red-500">{errors.fullName?.message}</div>
+            )}
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="full-name" className="flex items-center">
+            <label htmlFor="amount" className="flex items-center">
               Amount
               <span className="text-red-600"> *</span>
             </label>
             <input
               type="number"
-              name=""
-              id="full-name"
-              className="bg-[#E9EFFF] rounded-sm py-2 px-3 active:outline outline-[#225fbb] placeholder:text-sm"
+              id="amount"
+              disabled={isSubmitting}
+              className={`${
+                errors.amount?.message && "border border-red-500"
+              } bg-[#E9EFFF] rounded-sm py-2 px-3 active:outline outline-[#225fbb] placeholder:text-sm`}
               placeholder="Enter amount"
+              {...register("amount")}
             />
+            {errors.amount?.message && (
+              <div className="text-red-500">{errors.amount?.message}</div>
+            )}
           </div>
 
           <Dropdown>
             <DropdownTrigger>
               <Button
                 variant="bordered"
-                className="rounded border bg-[#E9EFFF] text-base"
+                className={`rounded border bg-[#E9EFFF] text-base ${
+                  errors.currency?.message && "border border-red-500"
+                }`}
               >
                 {`${currency}`}
               </Button>
@@ -60,12 +99,16 @@ const GiveForm = () => {
             <DropdownMenu
               aria-label="Action event example"
               onAction={(key) => setCurrency(key.toString())}
+              
             >
               <DropdownItem key="USD">United States Dollars (USD)</DropdownItem>
               <DropdownItem key="NGN">Nigerian Naira (NGN)</DropdownItem>
               <DropdownItem key="EUR">European Euro (EUR)</DropdownItem>
               <DropdownItem key="GBP">Great Britain Pounds (GBP)</DropdownItem>
             </DropdownMenu>
+            {errors.currency?.message && (
+              <div className="text-red-500">{errors.currency?.message}</div>
+            )}
           </Dropdown>
 
           <div className="flex flex-col gap-1">
@@ -75,20 +118,34 @@ const GiveForm = () => {
             </label>
             <input
               type="email"
-              name=""
+              disabled={isSubmitting}
               id="email"
-              className="bg-[#E9EFFF] rounded-sm py-2 px-3 placeholder:text-sm active:outline outline-[#225fbb]"
+              className={`${
+                errors.email?.message && "border border-red-500"
+              } bg-[#E9EFFF] rounded-sm py-2 px-3 placeholder:text-sm active:outline outline-[#225fbb]`}
               placeholder="Enter your email"
+              {...register("email")}
             />
+            {errors.email?.message && (
+                <div className="text-red-500">{errors.email?.message}</div>
+              )}
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="full-name">Additional Information</label>
+            <label htmlFor="message">Additional Information</label>
             <textarea
+              disabled={isSubmitting}
+              id="message"
               cols={30}
               rows={4}
-              className="bg-[#E9EFFF] py-2 px-3 w-full rounded-sm active:outline outline-[#225fbb] placeholder:text-sm"
+              className={`bg-[#E9EFFF] py-2 px-3 w-full rounded-sm active:outline outline-[#225fbb] ${
+                errors.message?.message && "border border-red-500"
+              } placeholder:text-sm`}
               placeholder="Enter any additional information e.g. bishop seed,etc."
+              {...register("message")}
             ></textarea>
+            {errors.message?.message && (
+                <div className="text-red-500">{errors.message?.message}</div>
+              )}
           </div>
         </div>
         <button className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]">

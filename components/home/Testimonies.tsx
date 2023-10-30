@@ -31,7 +31,7 @@ const Testimonies = () => {
   }, []);
   return (
     <section className="relative mt-10 lg:mt-24">
-      <h2 className="text-center text-3xl mb-3 text-[#001D78] font-semibold">
+      <h2 className="text-center text-2xl lg:text-3xl mb-3 text-[#001D78] font-semibold">
         Testimonies of God's Goodness
       </h2>
       <div className="p-12 lg:p-24 bg-inherit">

@@ -11,6 +11,7 @@ import UseScroll from "@/hooks/useScroll";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { CallButton } from ".";
+import EmailButton from "./EmailButton";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -25,7 +26,7 @@ const Navbar = () => {
               <Logo />
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <nav aria-label="Global">
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
@@ -99,11 +100,11 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-4">
               {/* <BsFillTelephoneFill color={"#fff"} /> */}
               <CallButton />
-              <GrMail size={"18px"} color={"#fff"} />
+              <EmailButton />
             </div>
             <button
               id="menu-btn"
-              className={`inline-block md:hidden focus:outline-none hamburger ${
+              className={`inline-block lg:hidden focus:outline-none hamburger ${
                 isOpen ? "open" : ""
               }`}
               onClick={() => setIsOpen(!isOpen)}

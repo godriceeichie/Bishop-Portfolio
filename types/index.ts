@@ -19,3 +19,18 @@ export type ContactDetails = {
     location: string,
     socialLinks: string[]
 }
+
+export type ContactInputs = {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    message: string;
+};
+export type GiveInputs = {
+    fullName: string,
+    amount: string,
+    currency: String | React.Key,
+    email: string,
+    message: string,
+};
+
