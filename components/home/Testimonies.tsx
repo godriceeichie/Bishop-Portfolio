@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import bg from '../../public/img/21-removebg.png'
+import bg from "../../public/img/21-removebg.png";
 import Image from "next/image";
 import TestimonySlide from "./Testimony";
 
@@ -15,19 +15,25 @@ import "swiper/css/pagination";
 import TestimonialSlideBtn from "./TestimonySlideBtn";
 import { getTestimonies } from "@/sanity/sanity.query";
 import { TestimoniesType } from "@/types";
+import { Box, Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 const Testimonies = () => {
-  const [data, setData] = useState<TestimoniesType[]>()
-  useEffect(() =>{
+  const [data, setData] = useState<TestimoniesType[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  useEffect(() => {
     const fetchData = async () => {
-      const testimonies: TestimoniesType[] = await getTestimonies()
-      setData(testimonies)
-    }
-    fetchData()
-  }, [])
+      setIsLoading(true);
+      const testimonies: TestimoniesType[] = await getTestimonies();
+      setData(testimonies);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
   return (
     <section className="relative mt-10 lg:mt-24">
-      <h2 className="text-center text-3xl mb-3 text-[#001D78] font-semibold">Testimonies of God's Goodness</h2>
+      <h2 className="text-center text-3xl mb-3 text-[#001D78] font-semibold">
+        Testimonies of God's Goodness
+      </h2>
       <div className="p-12 lg:p-24 bg-inherit">
         <Swiper
           // install Swiper modules
@@ -45,26 +51,19 @@ const Testimonies = () => {
           className="relative"
         >
           <TestimonialSlideBtn />
-          {/* <SwiperSlide>
 
-            <TestimonySlide />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TestimonySlide />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TestimonySlide />
-          </SwiperSlide>
-          <SwiperSlide>
-            <TestimonySlide />
-          </SwiperSlide> */}
-          {data && data.map(data => {
-            return(
-              <SwiperSlide key={data._id}>
-                <TestimonySlide name={data.name} content={data.content}/>
-              </SwiperSlide>
-            )
-          })}
+          <Box padding="6" boxShadow="lg" bg="white" className={`${isLoading ? '' : 'hidden'}`}>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+          </Box>
+          {data &&
+            data.map((data) => {
+              return (
+                <SwiperSlide key={data._id}>
+                  <TestimonySlide name={data.name} content={data.content} />
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
       </div>
       <Image

@@ -20,3 +20,15 @@ export async function getBio(){
         }`
     )
 }
+
+export async function getContactDetails(){
+    return client.fetch(
+        groq`*[_type == 'profile']{
+            _id,
+            phoneNumber,
+            email,
+            location,
+            socialLinks
+        }`
+    )
+}

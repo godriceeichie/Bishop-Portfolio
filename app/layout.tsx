@@ -20,11 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={lato.className}>
         <Providers>
-          <Navbar />
+          {/* <Navbar /> */}
           
           {children}
-          <CTA />
-          <Footer2 />
+          {/* <CTA />
+          <Footer2 /> */}
         </Providers>
       </body>
     </html>

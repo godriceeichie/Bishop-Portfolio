@@ -1,3 +1,6 @@
+export { default as CallButton} from './CallButton'
+export { default as GiveForm } from './give/GiveForm'
+export { default as GiveHero} from './give/Hero'
 export { default as Bio } from './about/Bio'
 export { default as AboutHero} from './about/Hero'
 export { default as ContactHero }from './contact/Hero'

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import bishopImg from "../public/img/BISHOP.jpg";
 // import bishopImg from "../../public/img/BISHOP.jpg";
 import Image from "next/image";
@@ -8,8 +8,18 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import { getContactDetails } from "@/sanity/sanity.query";
+import { ContactDetails } from "@/types";
 
 const Footer2 = () => {
+  const [contactDetails, setcontactDetails] = useState<ContactDetails[]>()
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getContactDetails()
+      setcontactDetails(data)
+    }
+    fetchData()
+  }, [])
   //Get the current pathname
   const pathname = usePathname();
 
@@ -39,18 +49,29 @@ const Footer2 = () => {
             <p className="font-semibold text-white text-lg">Contact Details</p>
 
             <ul className="mt-6 space-y-4 text-sm text-white">
-              <li className="flex items-center gap-3">
-                <BsFillTelephoneFill />
-                +2348033125477
-              </li>
-              <li className="flex items-center gap-3">
-                <GrMail size={"18px"} />
-                logospastor@yahoo.com
-              </li>
-              <li className="flex items-start gap-3">
-                <AiFillHome size={"20px"} />
-                Km. 1 Eleme Road, Eleme Junction, Port Harcourt, Nigeria.
-              </li>
+              {contactDetails &&
+                contactDetails.map((data) => {
+                  return (
+                    <>
+                      <li className="flex items-center gap-3">
+                        <BsFillTelephoneFill />
+                        {/* +2348033125477 */}
+                        {data.phoneNumber}
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <GrMail size={"18px"} />
+                        {/* logospastor@yahoo.com */}
+                        {data.email}
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <AiFillHome size={"20px"} />
+                        {/* Km. 1 Eleme Road, Eleme Junction, Port Harcourt,
+                        Nigeria. */}
+                        {data.location}
+                      </li>
+                    </>
+                  );
+                })}
             </ul>
           </div>
 
@@ -65,9 +86,7 @@ const Footer2 = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-[40px] after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${
-                      pathname === "/" ? "after:scale-x-100" : ""
-                    }`}
+                    ${pathname === "/" ? "after:scale-x-100" : ""}`}
                     href="/"
                   >
                     Home
@@ -80,9 +99,7 @@ const Footer2 = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-[30px] after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${
-                      pathname === "/blog" ? "after:scale-x-100" : ""
-                    }`}
+                    ${pathname === "/blog" ? "after:scale-x-100" : ""}`}
                     href="/blog"
                   >
                     Blog
@@ -95,9 +112,7 @@ const Footer2 = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-[38px] after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${
-                      pathname === "/about" ? "after:scale-x-100" : ""
-                    }`}
+                    ${pathname === "/about" ? "after:scale-x-100" : ""}`}
                     href="/about"
                   >
                     About
@@ -113,6 +128,18 @@ const Footer2 = () => {
                     href="/contact"
                   >
                     Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[30px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/give" ? "after:scale-x-100" : ""}`}
+                    href="/give"
+                  >
+                    Give
                   </Link>
                 </li>
               </ul>

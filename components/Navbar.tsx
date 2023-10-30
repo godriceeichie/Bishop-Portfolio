@@ -8,11 +8,14 @@ import { Link as UILink } from "@nextui-org/react";
 import NavbarMenu from "./NavbarMenu";
 import CTABtn from "./CTABtn";
 import UseScroll from "@/hooks/useScroll";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { GrMail } from "react-icons/gr";
+import { CallButton } from ".";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const {scrollPosition} = UseScroll()
+  const { scrollPosition } = UseScroll();
   return (
     <>
       <header className={`bg-[#0047B0] sticky top-0 z-[101]`}>
@@ -71,42 +74,44 @@ const Navbar = () => {
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${
-                      pathname === "/contact" ? "after:scale-x-100" : ""
-                    }`}
+                    ${pathname === "/contact" ? "after:scale-x-100" : ""}`}
                       href="/contact"
                     >
                       Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/give" ? "after:scale-x-100" : ""}`}
+                      href="/give"
+                    >
+                      Give
                     </Link>
                   </li>
                 </ul>
               </nav>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="hidden sm:flex sm:gap-4">
-                <div className=" sm:flex">
-                  {/* <a
-                    className="rounded-md bg-accent-color px-4 py-1.5 font-medium text-white"
-                    href="/"
-                  >
-                    Donate
-                  </a> */}
-                  <CTABtn buttonName={'Give'} link=""/>
-                </div>
-              </div>
-              <button
-                id="menu-btn"
-                className={`block hamburger md:hidden focus:outline-none ${
-                  isOpen ? "open" : ""
-                }`}
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                <span className="hamburger-top"></span>
-                <span className="hamburger-middle"></span>
-                <span className="hamburger-bottom"></span>
-              </button>
+            <div className="hidden lg:flex items-center gap-4">
+              {/* <BsFillTelephoneFill color={"#fff"} /> */}
+              <CallButton />
+              <GrMail size={"18px"} color={"#fff"} />
             </div>
+            <button
+              id="menu-btn"
+              className={`inline-block md:hidden focus:outline-none hamburger ${
+                isOpen ? "open" : ""
+              }`}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <span className="hamburger-top"></span>
+              <span className="hamburger-middle"></span>
+              <span className="hamburger-bottom"></span>
+            </button>
           </div>
         </div>
       </header>
