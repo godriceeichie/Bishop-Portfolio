@@ -10,7 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema } from "@/validation/contactForm";
 import { Button, useToast } from "@chakra-ui/react";
 import client from "@/sanity/sanity.client";
-import { ContactInputs } from "@/types";
+import { ContactInputs, MutationType } from "@/types";
+import { useSubmit } from "@/hooks/useSubmit";
+
 
 
 const ContactForm = () => {
@@ -31,10 +33,7 @@ const ContactForm = () => {
   const submitData: SubmitHandler<ContactInputs> = async (data, e) => {
     e?.preventDefault();
     console.log(data);
-    let token =
-      "sk3Lv9k9IpxALPfNZsiQyknYGmbjO5FLfnQIphoQ3rIseJPWf7nFb7ifbYPSeYB5nbCQmfTbEYILyNUVTUYYf06orBIqbFPmMZe3Rf3ge0dosqcprgTGW3oNeJ7ZcLrME5qJv3mLP6eNoKlKN8getlW0jcZBbqk2PNonh5eGM9vyM26Jo1Jo";
-    let projectId = "14gp8bl9";
-    const mutations = [
+    const mutations: MutationType = [
       {
         create: {
           "_type": "contactForm",
@@ -45,25 +44,28 @@ const ContactForm = () => {
         }
       },
     ];
-    await fetch(
-      `https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`,
-      {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ mutations }),
+    // await fetch(
+    //   `https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`,
+    //   {
+    //     method: "post",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify({ mutations }),
+    //   }
+    // )
+    //   .then((response) => response.json())
+      const response = await useSubmit(mutations)
+      if(response){
+        toast({
+          title: 'Message sent succesfully',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
       }
-    )
-      .then((response) => response.json())
-      .then(() => toast({
-        title: 'Message sent succesfully',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      }))
-      .catch((error) => console.error(error));
+      
   };
   return (
     <div>

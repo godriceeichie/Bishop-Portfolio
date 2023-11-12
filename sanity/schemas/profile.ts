@@ -28,6 +28,17 @@ export const profile = {
             type: "string"
         },
         {
+            name: 'shortBio',
+            title: 'Short Bio',
+            type: "text"
+        },
+        {
+            name: "fullBio",
+            title: "Full Bio",
+            type: "array",
+            of: [{type: 'block'}]
+        },
+        {
             name: "socialLinks",
             title: "Social Links",
             type: "object",
@@ -66,11 +77,6 @@ export const profile = {
 
             ]
         },
-        {
-            name: "fullBio",
-            title: "Full Bio",
-            type: "array",
-            of: [{type: 'block'}]
-        }
+        
     ]
 }

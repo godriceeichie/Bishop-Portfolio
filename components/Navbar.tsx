@@ -43,7 +43,7 @@ const Navbar = () => {
                     </UILink>
                   </li>
 
-                  <li>
+                  {/* <li>
                     <Link
                       className={` text-white text-base relative block after:block after:content-[''] after:absolute 
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
@@ -54,7 +54,7 @@ const Navbar = () => {
                     >
                       Devotionals
                     </Link>
-                  </li>
+                  </li> */}
 
                   <li>
                     <Link

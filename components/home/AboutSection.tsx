@@ -1,13 +1,25 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-// import bishopImg from "../../../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg";
-import bishopImg from '../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg'
+import React, { useEffect, useState } from "react";
+import bishopImg from "../../public/img/354347269_1770795243339613_7803894740863984802_n.jpg";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import CTABtn from "../CTABtn";
+import { ShortBioType } from "@/types";
+import { getShortBio } from "@/sanity/sanity.query";
 
 const AboutSection = () => {
+  const [data, setData] = useState<ShortBioType[]>();
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const result = await getShortBio();
+      setData(result);
+      setIsLoading(false);
+      console.log(result)
+    };
+    fetchData();
+  }, []);
   return (
     <section>
       <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
@@ -30,30 +42,30 @@ const AboutSection = () => {
                 <h2 className="text-2xl font-bold sm:text-3xl text-[#001D78]">
                   Bishop Yomi Isijola
                 </h2>
+                {isLoading && (
+                  <div className="w-full max-w-2xl mx-auto flex flex-col gap-y-2">
+                    <span className="w-full h-6 bg-zinc-400 rounded-sm animate-pulse"></span>
+                    <span className="w-full h-6 bg-zinc-400 rounded-sm animate-pulse"></span>
+                    <span className="w-full h-6 bg-zinc-400 rounded-sm animate-pulse"></span>
+                    <span className="w-full h-6 bg-zinc-400 rounded-sm animate-pulse"></span>
+                    <span className="w-full h-6 bg-zinc-400 rounded-sm animate-pulse"></span>
+                  </div>
+                )}
 
-                <p className="mt-4 text-gray-500">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Aliquid, molestiae! Quidem est esse numquam odio deleniti,
-                  beatae, magni dolores provident quaerat totam eos, aperiam
-                  architecto eius quis quibusdam fugiat dicta.
-                </p>
+                
+                {
+                  data && 
+                  data?.map(({ _id, shortBio }) => {
+                    return (<p className="mt-4 text-gray-500">
+                      {shortBio}
+                    </p>);
+                  })
+                  
+                }
               </div>
 
-              {/* <Link
-                href="about"
-                className="mt-8 inline-block rounded border border-[#DF3B5F] bg-accent-color hover:bg-white px-12 py-3 text-sm font-medium text-white hover:text-accent-color focus:outline-none focus:ring active:text-indigo-500"
-              >
-                Read More
-              </Link> */}
-              {/* <Link href={'about'} className="btn2 mt-8 inline-block rounded px-8 py-3 relative bg-accent-color text-white font-medium tracking-wider leading-none overflow-hidden hover:border hover:border-accent-color hover:text-accent-color">
-                <span className="absolute inset-0 bg-white"></span>
-                <span className="absolute inset-0 flex justify-center items-center font-bold"> 
-                  About Me
-                </span>
-                About Me
-              </Link> */}
               <div>
-                <CTABtn buttonName="About Me" link={'about'} />
+                <CTABtn buttonName="About Me" link={"about"} />
               </div>
             </div>
           </div>

@@ -7,6 +7,11 @@ export type TestimoniesType = {
     content: string
 }
 
+export type ShortBioType = {
+    _id: string,
+    shortBio: string
+}
+
 export type BioType = {
     _id: string,
     fullBio: PortableTextBlock[]
@@ -34,3 +39,16 @@ export type GiveInputs = {
     message: string,
 };
 
+export type MutationType = {
+    create: {
+        _type: string;
+        name: string;
+        email: string;
+        phoneNumber: string;
+        message: string;
+    };
+}[]
+
+const socialIcons = [
+    
+]

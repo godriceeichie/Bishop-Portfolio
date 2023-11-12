@@ -12,6 +12,15 @@ export async function getTestimonies(){
     )
 }
 
+export async function getShortBio(){
+    return client.fetch(
+        groq`*[_type == 'profile']{
+            _id,
+            shortBio
+        }`
+    )
+}
+
 export async function getBio(){
     return client.fetch(
         groq`*[_type == 'profile']{

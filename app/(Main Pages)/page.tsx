@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <HomeHero />
       <HomeAbout />
-      <HomeDevotionalCTA />
+      {/* <HomeDevotionalCTA /> */}
       <HomeTestimonies />
       
     </>

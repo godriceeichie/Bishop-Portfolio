@@ -93,7 +93,7 @@ const Footer2 = () => {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link
                     className={` text-white relative block after:block after:content-[''] after:absolute 
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-[30px] after:scale-x-0 
@@ -104,7 +104,7 @@ const Footer2 = () => {
                   >
                     Blog
                   </Link>
-                </li>
+                </li> */}
 
                 <li>
                   <Link
