@@ -13,10 +13,8 @@ import client from "@/sanity/sanity.client";
 import { ContactInputs, MutationType } from "@/types";
 import { useSubmit } from "@/hooks/useSubmit";
 
-
-
 const ContactForm = () => {
-  const toast = useToast()
+  const toast = useToast();
   const {
     register,
     handleSubmit,
@@ -26,46 +24,19 @@ const ContactForm = () => {
       name: "",
       email: "",
       phoneNumber: "",
+      subject: "",
       message: "",
+
     },
     resolver: zodResolver(contactFormSchema),
   });
   const submitData: SubmitHandler<ContactInputs> = async (data, e) => {
     e?.preventDefault();
-    console.log(data);
-    const mutations: MutationType = [
-      {
-        create: {
-          "_type": "contactForm",
-          "name": data.name,
-          "email": data.email,
-          "phoneNumber": data.phoneNumber,
-          "message": data.message,
-        }
-      },
-    ];
-    // await fetch(
-    //   `https://${projectId}.api.sanity.io/v2021-06-07/data/mutate/production/`,
-    //   {
-    //     method: "post",
-    //     headers: {
-    //       "Content-type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify({ mutations }),
-    //   }
-    // )
-    //   .then((response) => response.json())
-      const response = await useSubmit(mutations)
-      if(response){
-        toast({
-          title: 'Message sent succesfully',
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-      }
-      
+    const recipient = "info@bishopisijola.org";
+    const subject = encodeURIComponent(data.subject);
+    const body = encodeURIComponent(data.message);
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
   };
   return (
     <div>
@@ -126,6 +97,23 @@ const ContactForm = () => {
               {errors.phoneNumber?.message && (
                 <div className="text-red-500">
                   {errors.phoneNumber?.message}
+                </div>
+              )}
+            </div>
+            <div>
+              <input
+                type="text"
+                className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb] ${
+                  errors.subject?.message && "border border-red-500"
+                } placeholder:text-sm`}
+                placeholder="Enter your subject"
+                id="subject"
+                disabled={isSubmitting}
+                {...register("subject")}
+              />
+              {errors.subject?.message && (
+                <div className="text-red-500">
+                  {errors.subject?.message}
                 </div>
               )}
             </div>

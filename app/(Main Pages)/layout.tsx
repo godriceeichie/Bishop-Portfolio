@@ -1,5 +1,5 @@
 import { CTA, Navbar } from '@/components'
-import Footer2 from '@/components/Footer2'
+import Footer from '@/components/Footer'
 import React from 'react'
 
 const Navigation = ({children} : {children: React.ReactNode}) => {
@@ -8,7 +8,7 @@ const Navigation = ({children} : {children: React.ReactNode}) => {
         <Navbar />
         {children}
         <CTA />
-        <Footer2 />
+        <Footer />
     </>
   )
 }
