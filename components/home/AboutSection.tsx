@@ -56,7 +56,7 @@ const AboutSection = () => {
                 {
                   data && 
                   data?.map(({ _id, shortBio }) => {
-                    return (<p className="mt-4 text-gray-500">
+                    return (<p className="mt-4 text-gray-500" key={_id}>
                       {shortBio}
                     </p>);
                   })

@@ -31,7 +31,7 @@ const Bio = () => {
       {data &&
         <p className="w-full max-w-2xl mx-auto flex flex-col gap-y-3 text-zinc-500 leading-relaxed">
           {data?.map(({ _id, fullBio }) => {
-            return <PortableText value={fullBio} />;
+            return <PortableText value={fullBio} key={_id}/>;
           })}
       </p>
       }

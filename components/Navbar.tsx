@@ -55,7 +55,18 @@ const Navbar = () => {
                       Devotionals
                     </Link>
                   </li> */}
-
+                  <li>
+                    <Link
+                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/give" ? "after:scale-x-100" : ""}`}
+                      href="/give"
+                    >
+                      Give
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       className={` text-white text-base relative block after:block after:content-[''] after:absolute 
@@ -66,6 +77,18 @@ const Navbar = () => {
                       href="/about"
                     >
                       About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/gallery" ? "after:scale-x-100" : ""}`}
+                      href="/gallery"
+                    >
+                      Gallery
                     </Link>
                   </li>
 
@@ -81,18 +104,7 @@ const Navbar = () => {
                       Contact
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
-                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
-                    after:hover:scale-x-100 after:transition after:duration-300 
-                    after:origin-center transition hover:text-[#A8AABC] 
-                    ${pathname === "/give" ? "after:scale-x-100" : ""}`}
-                      href="/give"
-                    >
-                      Give
-                    </Link>
-                  </li>
+                  
                 </ul>
               </nav>
             </div>

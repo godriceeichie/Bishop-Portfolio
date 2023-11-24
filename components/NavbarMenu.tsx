@@ -14,7 +14,9 @@ const NavbarMenu = ({
 }) => {
   const pathname = usePathname();
   //To close the Navbar Menu when the user navigates to a page
-  useEffect(() => (isOpen ? setIsOpen(false) : void null), [pathname]);
+  useEffect(() => {
+    isOpen ? setIsOpen(false) : void null 
+  },[pathname]);
   return (
     <div
       className={`bg-[#0047B0] lg:hidden opacity-0 fixed z-20 w-full left-0 ${
