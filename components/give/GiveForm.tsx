@@ -12,29 +12,65 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { GiveInputs } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { giveForm } from "@/validation/giveForm";
+import { useFlutterwave, closePaymentModal, FlutterWaveTypes } from 'flutterwave-react-v3'
 
 const GiveForm = () => {
   const [currency, setCurrency] = useState<String | React.Key>(
     "Select a currency"
   );
+
   const {
     register,
     handleSubmit,
+    getValues,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<GiveInputs>({
     defaultValues: {
       fullName: "",
       amount: "",
-      currency: currency,
+      currency: "",
       email: "",
       message: "",
     },
     resolver: zodResolver(giveForm),
   });
+
+  
   const submitData: SubmitHandler<GiveInputs> = (data, e) => {
     e?.preventDefault();
-    console.log(data);
+    const handleFlutterPayment = useFlutterwave({
+      public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_API_KEY!,
+      tx_ref: String(Date.now()),
+      amount: parseInt(getValues("amount")), // Use register to get form values
+      currency: String(getValues("currency")),
+      payment_options: 'card, mobilemoney, ussd',
+      meta: {
+        consumer_id: 23,
+        consumer_mac: "92a3-912ba-1192a",
+     },
+      customer: {
+        email: getValues("email"),
+        phone_number: '',
+        name: getValues("fullName"),
+      },
+      customizations: {
+        title: 'my Payment Title',
+        description: 'Payment for items in cart',
+        logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+      }
+    });
+
+    handleFlutterPayment({
+      callback: (response) => {
+         console.log(response);
+        closePaymentModal() // this will close the modal programmatically
+      },
+      onClose: () => {},
+    });
+    
   };
+  
   return (
     <section className="py-20 px-3">
       <form
@@ -98,7 +134,10 @@ const GiveForm = () => {
             </DropdownTrigger>
             <DropdownMenu
               aria-label="Action event example"
-              onAction={(key) => setCurrency(key.toString())}
+              onAction={(key) => {
+               setValue("currency", key.toString())
+                setCurrency(key.toString())
+              }}
               
             >
               <DropdownItem key="USD">United States Dollars (USD)</DropdownItem>
@@ -148,7 +187,16 @@ const GiveForm = () => {
               )}
           </div>
         </div>
-        <button className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]">
+        <button 
+          // onClick={() => {
+          // handleFlutterPayment({
+          //   callback: (response) => {
+          //      console.log(response);
+          //       closePaymentModal() // this will close the modal programmatically
+          //   },
+          //   onClose: () => {},
+          // })}} 
+          className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]">
           Submit
         </button>
       </form>

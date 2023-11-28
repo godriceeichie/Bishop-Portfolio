@@ -1,16 +1,16 @@
-import { CTA, Navbar } from '@/components'
-import Footer from '@/components/Footer'
-import React from 'react'
+import { CTA, Navbar } from "@/components";
+import Footer from "@/components/Footer";
+import React from "react";
 
-const Navigation = ({children} : {children: React.ReactNode}) => {
+const Navigation = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-        <Navbar />
-        {children}
-        <CTA />
-        <Footer />
+      <Navbar />
+      {children}
+      <CTA />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;
