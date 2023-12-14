@@ -19,7 +19,7 @@ const Navbar = () => {
   const { scrollPosition } = UseScroll();
   return (
     <>
-      <header className={`bg-[#0047B0] sticky top-0 z-[101]`}>
+      <header className={`${pathname == '/events' ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600' : 'bg-[#0047B0]'} sticky top-0 z-[101]`}>
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
@@ -43,18 +43,32 @@ const Navbar = () => {
                     </UILink>
                   </li>
 
-                  {/* <li>
+                  <li>
                     <Link
                       className={` text-white text-base relative block after:block after:content-[''] after:absolute 
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
                     after:hover:scale-x-100 after:transition after:duration-300 
                     after:origin-center transition hover:text-[#A8AABC] 
-                    ${pathname === "/devotionals" ? "after:scale-x-100" : ""}`}
-                      href="/devotionals"
+                    ${pathname === "/events" ? "after:scale-x-100" : ""}`}
+                      href="/events"
                     >
-                      Devotionals
+                      Events
                     </Link>
-                  </li> */}
+                  </li>
+
+                  <li>
+                    <Link
+                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/gallery" ? "after:scale-x-100" : ""}`}
+                      href="/gallery"
+                    >
+                      Gallery
+                    </Link>
+                  </li>
+
                   <li>
                     <Link
                       className={` text-white text-base relative block after:block after:content-[''] after:absolute 
@@ -79,19 +93,7 @@ const Navbar = () => {
                       About
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      className={` text-white text-base relative block after:block after:content-[''] after:absolute 
-                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
-                    after:hover:scale-x-100 after:transition after:duration-300 
-                    after:origin-center transition hover:text-[#A8AABC] 
-                    ${pathname === "/gallery" ? "after:scale-x-100" : ""}`}
-                      href="/gallery"
-                    >
-                      Gallery
-                    </Link>
-                  </li>
-
+                  
                   <li>
                     <Link
                       className={` text-white text-base relative block after:block after:content-[''] after:absolute 

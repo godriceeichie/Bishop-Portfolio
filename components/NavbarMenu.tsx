@@ -15,8 +15,8 @@ const NavbarMenu = ({
   const pathname = usePathname();
   //To close the Navbar Menu when the user navigates to a page
   useEffect(() => {
-    isOpen ? setIsOpen(false) : void null 
-  },[pathname]);
+    isOpen ? setIsOpen(false) : void null;
+  }, [pathname]);
   return (
     <div
       className={`bg-[#0047B0] lg:hidden opacity-0 fixed z-20 w-full left-0 ${
@@ -36,6 +36,18 @@ const NavbarMenu = ({
             href="/"
           >
             Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` text-white text-xl relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/gallery" ? "after:scale-x-100" : ""}`}
+            href="/gallery"
+          >
+            Gallery
           </Link>
         </li>
 

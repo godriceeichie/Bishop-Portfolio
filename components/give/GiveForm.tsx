@@ -12,6 +12,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { GiveInputs } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { giveForm } from "@/validation/giveForm";
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import { FlutterwaveConfig } from "flutterwave-react-v3/dist/types";
+import useFlutterwavePayment from "@/hooks/useFlutterwavePayment";
 
 const GiveForm = () => {
   const [currency, setCurrency] = useState<String | React.Key>(
@@ -20,6 +23,8 @@ const GiveForm = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<GiveInputs>({
     defaultValues: {
@@ -34,12 +39,44 @@ const GiveForm = () => {
   const submitData: SubmitHandler<GiveInputs> = (data, e) => {
     e?.preventDefault();
     console.log(data);
+
+    handleFlutterPayment({
+      callback: (response) => {
+        console.log(response);
+        closePaymentModal(); // this will close the modal programmatically
+      },
+      onClose: () => {},
+    });
   };
+  let config: FlutterwaveConfig = {
+    public_key: process.env.FLUTTERWAVE_API_KEY!,
+    tx_ref: Date.now().toString(),
+    amount: parseInt(getValues("amount")),
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: getValues("email"),
+      phone_number: "08068578933",
+      name: getValues("fullName"),
+    },
+    meta: {
+      consumer_id: 23,
+      consumer_mac: "92a3-912ba-1192a",
+    },
+    customizations: {
+      title: "my Payment Title",
+      description: "Payment for items in cart",
+      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    },
+  };
+  const handleFlutterPayment = useFlutterwave(config);
+
+  const {initiatePayment, data} = useFlutterwavePayment()
   return (
     <section className="py-20 px-3">
       <form
         className="w-full max-w-lg mx-auto shadow-lg rounded-lg py-4 md:py-6 px-4 md:px-8"
-        onSubmit={handleSubmit(submitData)}
+        
       >
         <h2 className="font-semibold text-lg border-b">Personal Information</h2>
         <div className="mt-5 flex flex-col gap-5">
@@ -98,8 +135,10 @@ const GiveForm = () => {
             </DropdownTrigger>
             <DropdownMenu
               aria-label="Action event example"
-              onAction={(key) => setCurrency(key.toString())}
-              
+              onAction={(key) => {
+                setValue("currency", key.toString());
+                setCurrency(key.toString());
+              }}
             >
               <DropdownItem key="USD">United States Dollars (USD)</DropdownItem>
               <DropdownItem key="NGN">Nigerian Naira (NGN)</DropdownItem>
@@ -127,8 +166,8 @@ const GiveForm = () => {
               {...register("email")}
             />
             {errors.email?.message && (
-                <div className="text-red-500">{errors.email?.message}</div>
-              )}
+              <div className="text-red-500">{errors.email?.message}</div>
+            )}
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="message">Additional Information</label>
@@ -144,14 +183,29 @@ const GiveForm = () => {
               {...register("message")}
             ></textarea>
             {errors.message?.message && (
-                <div className="text-red-500">{errors.message?.message}</div>
-              )}
+              <div className="text-red-500">{errors.message?.message}</div>
+            )}
           </div>
         </div>
-        <button className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]">
+        <button
+          onClick={() => {
+            // handleFlutterPayment({
+            //   callback: (response) => {
+            //     console.log(response);
+            //     closePaymentModal(); // this will close the modal programmatically
+            //   },
+            //   onClose: () => {},
+            // });
+            initiatePayment()
+            console.log(data)
+          }}
+          type="button"
+          className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]"
+        >
           Submit
         </button>
       </form>
+     
     </section>
   );
 };
