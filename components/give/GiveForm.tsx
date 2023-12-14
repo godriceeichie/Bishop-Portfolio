@@ -20,6 +20,7 @@ const GiveForm = () => {
   const [currency, setCurrency] = useState<String | React.Key>(
     "Select a currency"
   );
+
   const {
     register,
     handleSubmit,
@@ -30,12 +31,14 @@ const GiveForm = () => {
     defaultValues: {
       fullName: "",
       amount: "",
-      currency: currency,
+      currency: "",
       email: "",
       message: "",
     },
     resolver: zodResolver(giveForm),
   });
+
+  
   const submitData: SubmitHandler<GiveInputs> = (data, e) => {
     e?.preventDefault();
     console.log(data);
@@ -187,21 +190,16 @@ const GiveForm = () => {
             )}
           </div>
         </div>
-        <button
-          onClick={() => {
-            // handleFlutterPayment({
-            //   callback: (response) => {
-            //     console.log(response);
-            //     closePaymentModal(); // this will close the modal programmatically
-            //   },
-            //   onClose: () => {},
-            // });
-            initiatePayment()
-            console.log(data)
-          }}
-          type="button"
-          className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]"
-        >
+        <button 
+          // onClick={() => {
+          // handleFlutterPayment({
+          //   callback: (response) => {
+          //      console.log(response);
+          //       closePaymentModal() // this will close the modal programmatically
+          //   },
+          //   onClose: () => {},
+          // })}} 
+          className="mt-7 inline-block w-full text-white py-2 rounded-lg bg-accent-color hover:bg-[#DF3B5F]">
           Submit
         </button>
       </form>

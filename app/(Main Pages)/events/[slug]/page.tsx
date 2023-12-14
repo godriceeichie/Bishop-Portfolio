@@ -37,7 +37,7 @@ export default async function Event({ params }:  Props){
   const { slug } = params;
   const event: EventType = await getSingleEvent(slug);
   return (
-    <main className="max-w-6xl mx-auto lg:px-16 px-8">
+    <main className="max-w-6xl mx-auto lg:px-16 px-8 my-6">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-start justify-between mb-4">
           <h1 className="font-bold lg:text-3xl text-xl lg:leading-tight mb-4">
@@ -50,14 +50,15 @@ export default async function Event({ params }:  Props){
         </div>
 
         <Image
-          className="rounded-xl border border-zinc-800"
-          width={900}
-          height={460}
+          className="w-full h-96 rounded-xl border border-zinc-800"
+          width={0}
+          height={0}
           src={event.coverImage?.image}
           alt={event.coverImage?.alt || event.name}
+          
         />
 
-        <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
+        <div className="flex flex-col gap-y-6 mt-8 leading-7 text-lg text-zinc-400">
           <PortableText value={event.description} />
         </div>
       </div>

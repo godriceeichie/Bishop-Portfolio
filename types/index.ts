@@ -1,4 +1,5 @@
-import { PortableTextBlock } from "sanity";
+
+import { PortableTextBlock } from "sanity"
 
 export type TestimoniesType = {
   _id: string;
@@ -7,22 +8,22 @@ export type TestimoniesType = {
 };
 
 export type ShortBioType = {
-  _id: string;
-  shortBio: string;
-};
+    _id: string,
+    shortBio: string
+}
 
 export type BioType = {
-  _id: string;
-  fullBio: PortableTextBlock[];
-};
+    _id: string,
+    fullBio: PortableTextBlock[]
+}
 
 export type ContactDetails = {
-  _id: string;
-  phoneNumber: string;
-  email: string;
-  location: string;
-  socialLinks: string[];
-};
+    _id: string,
+    phoneNumber: string,
+    email: string,
+    location: string,
+    socialLinks: string[]
+}
 
 export type ContactInputs = {
   name: string;
