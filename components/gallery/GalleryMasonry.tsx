@@ -30,7 +30,7 @@ const GalleryMasonry = () => {
     <section className="p-4">
       {isLoading && (
         <Masonry
-          breakpointCols={3}
+          breakpointCols={breakpoints}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
@@ -41,7 +41,7 @@ const GalleryMasonry = () => {
       )}
       {galleryImg && (
         <Masonry
-          breakpointCols={3}
+          breakpointCols={breakpoints}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >

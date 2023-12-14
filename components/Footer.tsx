@@ -34,7 +34,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gradient-to-tr from-[#001D78] via-[#003194] to-[#2B77EA] md:grid md:grid-cols-5">
+    <footer className={`${pathname == '/events' ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600' : 'bg-gradient-to-tr from-[#001D78] via-[#003194] to-[#2B77EA]'}  md:grid md:grid-cols-5`}>
       <div className="hidden md:block relative h-32 md:col-span-2 md:h-full">
         <Image
           src={bishopImg}

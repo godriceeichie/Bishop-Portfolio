@@ -19,7 +19,7 @@ const NavbarMenu = ({
   }, [pathname]);
   return (
     <div
-      className={`bg-[#0047B0] lg:hidden opacity-0 fixed z-20 w-full left-0 ${
+      className={`${pathname == '/events' ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600' : 'bg-[#0047B0]'} lg:hidden opacity-0 fixed z-20 w-full left-0 ${
         isOpen ? "top-[50px]" : "top-[-520px]"
       } ${
         isOpen ? "opacity-100 h-screen md:h-auto bottom-0" : ""
@@ -36,6 +36,18 @@ const NavbarMenu = ({
             href="/"
           >
             Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={` text-white text-xl relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-full after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/events" ? "after:scale-x-100" : ""}`}
+            href="/"
+          >
+            Events
           </Link>
         </li>
         <li>

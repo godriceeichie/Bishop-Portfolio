@@ -66,6 +66,7 @@ export async function getEvents() {
   );
 }
 
+
 export async function getSingleEvent(slug: string) {
     return client.fetch(
       groq`*[_type == "event" && slug.current == $slug][0]{
@@ -78,4 +79,19 @@ export async function getSingleEvent(slug: string) {
       }`,
       { slug }
     );
-  }
+}
+
+export async function getSearchEvents(name: string) {
+    return client.fetch(
+        groq`*[_type == "event" && name.current == $name]{
+          _id,
+          name,
+          coverImage { alt, "image": asset->url },
+          tagline,
+          description,
+          date
+        }`,
+        { name }
+      );
+}
+
