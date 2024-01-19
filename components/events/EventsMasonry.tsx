@@ -39,6 +39,9 @@ const EventsMasonry = () => {
         )
       );
     }
+    else{
+      fetchData()
+    }
   }, [searchTerm]);
 
   const breakpoints = {
