@@ -48,11 +48,11 @@ const Footer = () => {
           <div>
             <p className="font-semibold text-white text-lg">Contact Details</p>
 
-            <ul className="mt-6 space-y-4 text-sm text-white">
+            <>
               {contactDetails &&
                 contactDetails.map((data) => {
                   return (
-                    <>
+                    <ul className="mt-6 space-y-4 text-sm text-white" key={data._id}>
                       <li className="flex items-center gap-3">
                         <BsFillTelephoneFill />
                         {/* +2348033125477 */}
@@ -69,10 +69,10 @@ const Footer = () => {
                         Nigeria. */}
                         {data.location}
                       </li>
-                    </>
+                    </ul>
                   );
                 })}
-            </ul>
+            </>
           </div>
 
           <div className="mt-10 md:mt-0 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -90,6 +90,30 @@ const Footer = () => {
                     href="/"
                   >
                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[40px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/events" ? "after:scale-x-100" : ""}`}
+                    href="/events"
+                  >
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={` text-white relative block after:block after:content-[''] after:absolute 
+                    after:h-[2px] after:rounded-full after:bg-accent-color after:w-[40px] after:scale-x-0 
+                    after:hover:scale-x-100 after:transition after:duration-300 
+                    after:origin-center transition hover:text-[#A8AABC] 
+                    ${pathname === "/gallery" ? "after:scale-x-100" : ""}`}
+                    href="/gallery"
+                  >
+                    Gallery
                   </Link>
                 </li>
 
@@ -130,7 +154,7 @@ const Footer = () => {
                     Contact
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className={`text-white relative block after:block after:content-[''] after:absolute 
                     after:h-[2px] after:rounded-full after:bg-accent-color after:w-[30px] after:scale-x-0 
@@ -141,7 +165,7 @@ const Footer = () => {
                   >
                     Give
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

@@ -1,25 +1,26 @@
 import { getEvents, getSingleEvent } from "@/sanity/sanity.query";
 import { EventType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
 type Props = {
   params: {
     slug: string;
   };
+  // searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateStaticParams(){
-    const events: EventType[] = await getEvents()
-    return events.map((event) => ({
-      slug: event.slug
-    }))
-}
 
-export async function generateMetaData({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
   const slug = params.slug;
   const event: EventType = await getSingleEvent(slug);
+
+  if (!event) {
+    return { title: "Event not found" };
+  }
   return {
     title: `${event.name} | Event`,
     description: event.tagline,
@@ -31,10 +32,22 @@ export async function generateMetaData({ params }: Props): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  const events: EventType[] = await getEvents();
 
+  if (!events) return [];
+  return events.map((event) => ({
+    slug: event.slug,
+  }));
+}
 
-export default async function Event({ params }:  Props){
-  const { slug } = params;
+export default async function Event({
+  params: { slug },
+}: {
+  params: {
+    slug: string;
+  };
+}) {
   const event: EventType = await getSingleEvent(slug);
   return (
     <main className="max-w-6xl mx-auto lg:px-16 px-8 my-6">
@@ -55,7 +68,6 @@ export default async function Event({ params }:  Props){
           height={0}
           src={event.coverImage?.image}
           alt={event.coverImage?.alt || event.name}
-          
         />
 
         <div className="flex flex-col gap-y-6 mt-8 leading-7 text-lg text-zinc-400">
@@ -64,7 +76,4 @@ export default async function Event({ params }:  Props){
       </div>
     </main>
   );
-};
-
-
-
+}

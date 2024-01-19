@@ -32,7 +32,7 @@ const ContactForm = () => {
   });
   const submitData: SubmitHandler<ContactInputs> = async (data, e) => {
     e?.preventDefault();
-    const recipient = "info@bishopisijola.org";
+    const recipient = "contact@bishopisijola.org";
     const subject = encodeURIComponent(data.subject);
     const body = encodeURIComponent(data.message);
     const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
@@ -85,7 +85,7 @@ const ContactForm = () => {
             </div>
             <div>
               <input
-                type="number"
+                type="tel"
                 className={`bg-[#E9EFFF] px-4 py-3 w-full rounded-md active:outline outline-[#225fbb] ${
                   errors.phoneNumber?.message && "border border-red-500"
                 } placeholder:text-sm`}
@@ -176,7 +176,7 @@ const ContactForm = () => {
               <span className="rounded-full border p-2">
                 <GrMail className="text-primary-color" />
               </span>
-              <span className="w-fit">logospastor@yahoo.com</span>
+              <span className="w-fit">contact@bishopisijola.org</span>
             </li>
           </ul>
         </div>

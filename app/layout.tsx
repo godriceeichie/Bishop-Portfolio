@@ -20,6 +20,7 @@ export default function RootLayout({
           {/* <Navbar /> */}
           
           {children}
+          
           {/* <CTA />
           <Footer2 /> */}
         </Providers>

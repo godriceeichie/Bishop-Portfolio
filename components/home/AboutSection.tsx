@@ -16,7 +16,6 @@ const AboutSection = () => {
       const result = await getShortBio();
       setData(result);
       setIsLoading(false);
-      console.log(result)
     };
     fetchData();
   }, []);

@@ -20,9 +20,9 @@ const NavbarMenu = ({
   return (
     <div
       className={`${pathname == '/events' ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600' : 'bg-[#0047B0]'} lg:hidden opacity-0 fixed z-20 w-full left-0 ${
-        isOpen ? "top-[50px]" : "top-[-520px]"
+        isOpen ? "top-[50px]" : "top-[-700px]"
       } ${
-        isOpen ? "opacity-100 h-screen md:h-auto bottom-0" : ""
+        isOpen ? "opacity-100 overflow-y-auto scrollbar-hide h-screen md:h-auto bottom-0" : ""
       } transition-all ease-in duration-500 flex flex-col items-center gap-y-16 py-10`}
     >
       <ul className="flex flex-col items-center gap-y-16 text-2xl">

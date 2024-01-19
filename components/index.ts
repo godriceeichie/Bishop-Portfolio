@@ -1,3 +1,5 @@
+// export { default as NewsletterSubscribe } from "./NewsletterSubscribe";
+
 export { default as EventsMasonry} from "./events/EventsMasonry";
 
 export { default as EventsHero } from "./events/EventsHero";
@@ -19,3 +21,4 @@ export { default as Footer } from "./Footer";
 export { default as Navbar } from "./Navbar";
 export { default as HomeAbout } from "./home/AboutSection";
 export { default as HomeTestimonies } from "./home/Testimonies";
+

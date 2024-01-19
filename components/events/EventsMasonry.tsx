@@ -77,9 +77,9 @@ const EventsMasonry = () => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {[1, 2, 3, 4, 5, 6].map(() => {
+          {[1, 2, 3, 4, 5, 6].map((element) => {
             return (
-              <Box padding="6" boxShadow={"lg"} bg="white">
+              <Box padding="6" boxShadow={"lg"} bg="white" key={element}>
                 <Skeleton height={"52"}></Skeleton>
                 <SkeletonText
                   mt="4"
@@ -108,7 +108,7 @@ const EventsMasonry = () => {
               >
                 <Image
                   src={coverImage.image}
-                  alt={coverImage.alt!}
+                  alt={tagline}
                   objectFit="contain"
                   height={0}
                   width={0}
@@ -121,12 +121,12 @@ const EventsMasonry = () => {
                     {date.toString()}{" "}
                   </time>
 
-                  <a href="#">
+                  
                     <h3 className="mt-0.5 text-lg font-medium text-gray-900">
                       {/* How to center an element using JavaScript and jQuery */}
                       {name}
                     </h3>
-                  </a>
+                  
 
                   <div className="mt-4 ">{tagline}</div>
                   <div className="mt-4 flex flex-wrap gap-1">

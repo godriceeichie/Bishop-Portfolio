@@ -34,8 +34,8 @@ const GalleryMasonry = () => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => {
-            return <Skeleton width={"500"} height={"400"} isLoaded={isLoading}></Skeleton>;
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => {
+            return <Skeleton key={number} width={"500"} height={"400"} isLoaded={isLoading}></Skeleton>;
           })}
         </Masonry>
       )}
@@ -53,7 +53,7 @@ const GalleryMasonry = () => {
                   alt={alt}
                   width={0}
                   height={0}
-                  objectFit="cover"
+                  style={{objectFit: 'cover'}}
                   className="w-full h-auto"
                 />
               </div>

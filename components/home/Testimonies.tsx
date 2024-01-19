@@ -46,8 +46,6 @@ const Testimonies = () => {
           spaceBetween={50}
           slidesPerView={3}
           pagination={{ clickable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
           className="relative"
         >
           <TestimonialSlideBtn />

@@ -1,5 +1,6 @@
 import { CTA, Navbar } from "@/components";
 import Footer from "@/components/Footer";
+
 import React from "react";
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
@@ -8,6 +9,7 @@ const Navigation = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       {children}
       <CTA />
+      {/* <NewsletterSubscribe /> */}
       <Footer />
     </>
   );
